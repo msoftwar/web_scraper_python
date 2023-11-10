@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Scraper</title>
+</head>
+<body>
+    <h1>Web Scraper</h1>
+    
+    <form method="post">
+        <label for="url">Enter URL:</label>
+        <input type="text" id="url" name="url" required>
+        
+        <!-- <label for="content_type">Choose Content Type:</label>
+        <select id="content_type" name="content_type" required>
+            <option value="paragraphs">Paragraphs</option>
+            <option value="headings">Headings</option>
+            <option value="images">Images</option>
+            <option value="contact">contact</option>
+        </select> -->
+        
+        <button type="submit">Scrape</button>
+    </form>
+    
+
+   <!-- ... (existing code) -->
+
+{% if url %}
+<h2>Scraping results for {{ url }}:</h2>
+<table style="border:1">
+    <tr>
+        <th>Images</th>
+        <th>Links</th>
+        <th>Paragraphs</th>
+        <th>Headings</th>
+        <!-- Add more headers for additional data types -->
+    </tr>
+    <tr>
+        <td>
+            <ul>
+                {% for image in scraped_data['Images'] %}
+                    <li>{{ image }}</li>
+                {% endfor %}
+            </ul>
+        </td>
+        <td>
+            <ul>
+                {% for link in scraped_data['Links'] %}
+                    <li>{{ link }}</li>
+                {% endfor %}
+            </ul>
+        </td>
+        <td>
+            <ul>
+                {% for paragraph in scraped_data['Paragraphs'] %}
+                    <li>{{ paragraph }}</li>
+                {% endfor %}
+            </ul>
+        </td>
+        <td>
+            <ul>
+                {% for heading in scraped_data['Headings'] %}
+                    <li>{{ heading }}</li>
+                {% endfor %}
+            </ul>
+        </td>
+        <!-- Add more columns for additional data types -->
+    </tr>
+</table>
+{% elif error_message %}
+<p style="color: red;">{{ error_message }}</p>
+{% endif %}
+
+<!-- ... (existing code) -->
+
+</body>
+</html>
